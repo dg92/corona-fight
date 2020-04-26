@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Coronavirus Update SMS services</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				
+				<h2 style="padding: 0 0 70px 0;">Get Coronavirus Update On SMS - Near You </h2>
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="images/covid.png" alt="IMG">
+				</div>
+
+				<form class="login100-form validate-form">
+					<div class="wrap-input100 validate-input" data-validate = "Valid name is required: Deepak">
+						<input class="input100" type="text" name="name" placeholder="Name">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Phone Number is required">
+						<input class="input100" type="number" name="phone" placeholder="Phone No.">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-phone" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "State is required">
+						<select class="input100" name="state" id="state_list"  style="-webkit-appearance: none; border: 1px;outline:none;color:#666666;" required>
+							<option value="-1" style="display:none;"> Choose State</option>
+						</select>
+						<span class="symbol-input100">
+							<i class="fa fa-map-marker " aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "state">
+						<select class="input100" id="loca_list" style="-webkit-appearance: none; border: 1px;outline:none;color:#666666;">
+							<option value="-1" style="display:none;"> Choose locality</option>
+						</select>
+						<span class="symbol-input100">
+							<i class="fa fa-location-arrow" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Submit
+						</button>
+					</div>
+				</form>
+				<p style="padding: 70px 0 0 0;">
+					We only send SMS if there is a change in your state or district. 
+					The purpose of this sms services is to provide information to people to understand the situation.
+					Our Service update every 4hrs so you might see some data difference.
+					<br/>We don't spam anyone or share data! <b>Stay Home #IndiaFightsCorona</b>
+				</p>
+			</div>
+		</div>
+	</div>
+	
+	
+
+	
+<!--===============================================================================================-->	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+		$(document).ready(function() {
+         $.getJSON( "../states.json", function( data ) {
+              $.each( data, function( key, val ) {
+                $('#state_list').append($('<option/>', {
+                    value: val.code,
+                    text : val.label
+                }));
+              });
+            });
+    });
+	</script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+</body>
+</html>
