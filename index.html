@@ -11,13 +11,6 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 </head>
@@ -58,9 +51,9 @@
 						</span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate = "state">
-						<select class="input100" id="loca_list" style="-webkit-appearance: none; border: 1px;outline:none;color:#666666;">
-							<option value="-1" style="display:none;"> Choose locality</option>
+					<div class="wrap-input100 validate-input" data-validate = "district">
+						<select class="input100" id="district" style="-webkit-appearance: none; border: 1px;outline:none;color:#666666;">
+							<option value="-1" style="display:none;"> Choose district</option>
 						</select>
 						<span class="symbol-input100">
 							<i class="fa fa-location-arrow" aria-hidden="true"></i>
@@ -73,7 +66,7 @@
 						</button>
 					</div>
 				</form>
-				<p style="padding: 70px 0 0 0;">
+				<p style="padding: 50px 0 0 0;">
 					We only send SMS if there is a change in your state or district. 
 					The purpose of this sms services is to provide information to people to understand the situation.
 					Our Service update every 4hrs so you might see some data difference.
@@ -89,10 +82,7 @@
 <!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/tilt/tilt.jquery.min.js"></script>
 	<script >
@@ -100,7 +90,9 @@
 			scale: 1.1
 		})
 		$(document).ready(function() {
-         $.getJSON( "../states.json", function( data ) {
+			let states = [];
+         	$.getJSON( "../states.json", function( data ) {
+				states = data;
               $.each( data, function( key, val ) {
                 $('#state_list').append($('<option/>', {
                     value: val.code,
@@ -108,6 +100,19 @@
                 }));
               });
             });
+			$('#state_list').on('change', function (e) {
+				var valueSelected = this.value;
+				$('#district')
+				.find('option')
+				.remove()
+				const district = states.find(s => s.code === valueSelected).district;
+				$.each( district, function( key, val ) {
+					$('#district').append($('<option/>', {
+						value: val,
+						text : val
+					}));
+				});
+			});
     });
 	</script>
 <!--===============================================================================================-->
