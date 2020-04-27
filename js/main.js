@@ -2,11 +2,10 @@
 
 (function ($) {
     "use strict";
-    
-    /*==================================================================
-    [ Validate ]*/
     var input = $('.validate-input .input100');
-    $('.validate-form').on('submit',function(){
+    let data = ``;
+    
+    $('.validate-form').on('submit',function(e){
         var check = true;
         for(var i=0; i<input.length; i++) {
             if(validate(input[i]) == false){
@@ -14,35 +13,20 @@
                 check=false;
             }
         }
-        return check;
-
-        $('#conact_response').text('');
-                var data = {
-                    "name": $('#name').val(),
-                    "phone_number": $('#phone_number').val(),
-                    "state_code": $('#state_list').val()
-                }
-
-                console.log("You clicked contact button");
-                $.ajax({type: 'POST',
-                    url: 'register_contact',
-                    data: JSON.stringify(data),
-                    success: function(data) {
-                        $('#conact_response').text('Contact is added/updated for notifications');
-                    },
-                    error: function(data) {
-                       console.log("data : ", data.responseJSON);
-                       var message = data.responseJSON.message;
-
-                       if (data.responseJSON.key) {
-                          message = data.responseJSON.key + " "+message;
-                       }
-
-                       $('#conact_response').text(message);
-                    },
-                    contentType: "application/json",
-                    dataType: 'json'
-                });
+        if(!check) {
+            return false;
+        }
+        e.preventDefault();
+        for(var i=0; i<input.length; i++) {
+            data = data + `${$(input[i]).attr('name')}=${$(input[i]).val()}${i=== input.length -1 ? '' : '&'}`
+        }
+        fetch(`https://quirky-minsky-673bde.netlify.app/.netlify/functions/create?${data}`)
+        .then(res => res.json())
+        .then(data => {
+          $('.container-login100-form-btn').css('display', 'none');
+          $('.validate-input').css('display', 'none');
+          $('.msg').css('display', 'block');
+        });
     });
 
 
@@ -53,12 +37,12 @@
     });
 
     function validate (input) {
-        if($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
-            if($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
-                return false;
-            }
-        }
         if($(input).val().trim() == '') {
+            return false;
+        }
+        if(
+            (($(input).attr('name')) === 'phone') && ($(input).val().length != 10)
+        ) {
             return false;
         }
         if(

@@ -400,6 +400,8 @@ iframe {
 .validate-input {
   position: relative;
 }
+.post-share a{display:inline-block;padding:5px 15px;border-radius:5px;color:#fff;background-color:#97989b;margin-right:4px;margin-bottom:6px;-webkit-transition:.2s opacity;transition:.2s opacity}.post-share a:hover{opacity:.9}.post-share a i{width:20px;text-align:center}.post-share a span{padding-left:10px;border-left:2px solid rgba(255,255,255,.1);text-transform:uppercase;font-size:12px;font-weight:700;margin-left:10px}
+.social-facebook{background:#225b99!important}.social-twitter{background:#00adf2!important}.social-google-plus{background:#dc4d2d!important}.social-whatsapp{background:#1cd741!important}.social-instagram{background:#d341b2!important}.social-linkedin
 
 .alert-validate::before {
   content: attr(data-validate);
