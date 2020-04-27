@@ -26,6 +26,7 @@
           $('.container-login100-form-btn').css('display', 'none');
           $('.validate-input').css('display', 'none');
           $('.msg').css('display', 'block');
+          $('.post-share').css('display', 'block');
         });
     });
 
