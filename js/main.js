@@ -20,7 +20,7 @@
         for(var i=0; i<input.length; i++) {
             data = data + `${$(input[i]).attr('name')}=${$(input[i]).val()}${i=== input.length -1 ? '' : '&'}`
         }
-        fetch(`https://quirky-minsky-673bde.netlify.app/.netlify/functions/create?${data}`)
+        fetch(`http://localhost:9000/.netlify/functions/create?${data}`)
         .then(res => res.json())
         .then(data => {
           $('.container-login100-form-btn').css('display', 'none');
