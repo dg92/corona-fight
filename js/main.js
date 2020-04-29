@@ -20,14 +20,15 @@
         for(var i=0; i<input.length; i++) {
             data = data + `${$(input[i]).attr('name')}=${$(input[i]).val()}${i=== input.length -1 ? '' : '&'}`
         }
+         $('.container-login100-form-btn').css('display', 'none');
+          $('.validate-input').css('display', 'none');
+          $('.msg').css('display', 'block');
+          $('.post-share').css('display', 'block');
         fetch(`https://quirky-minsky-673bde.netlify.app/.netlify/functions/create?${data}`)
         .then(res => res.json())
         .then(data => {
           data = '';
-          $('.container-login100-form-btn').css('display', 'none');
-          $('.validate-input').css('display', 'none');
-          $('.msg').css('display', 'block');
-          $('.post-share').css('display', 'block');
+         
         });
     });
 
