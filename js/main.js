@@ -23,6 +23,7 @@
         fetch(`https://quirky-minsky-673bde.netlify.app/.netlify/functions/create?${data}`)
         .then(res => res.json())
         .then(data => {
+          data = '';
           $('.container-login100-form-btn').css('display', 'none');
           $('.validate-input').css('display', 'none');
           $('.msg').css('display', 'block');
